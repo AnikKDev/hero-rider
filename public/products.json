@@ -1,0 +1,79 @@
+{
+  "thriller": {
+    "cardInfo": {
+      "title": "Thriller Collection",
+      "description": "Looking for an adrenaline-packed read that will keep you on the edge of your seat? Look no further than our thriller collection, where you'll find heart-pumping tales of suspense, danger, and intrigue. From pulse-pounding espionage novels to blood-curdling murder mysteries, our collection of thrillers is sure to satisfy even the most avid fans of the genre. ",
+      "image": "https://images.unsplash.com/photo-1633266841047-719b5f737149?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    },
+    "data": [
+      {
+        "name": "The Girl with the Dragon Tattoo",
+        "image": "https://m.media-amazon.com/images/I/81UhKOBDrCL.jpg",
+        "category": "thriller",
+        "description": "The Girl with the Dragon Tattoo is a bestselling novel by Swedish author Stieg Larsson. The book follows the story of Mikael Blomkvist, a journalist who is hired by wealthy businessman Henrik Vanger to investigate the disappearance of his niece Harriet. Blomkvist is assisted in his investigation by Lisbeth Salander, a highly intelligent and enigmatic young woman with a troubled past. The novel is known for its gripping and suspenseful plot, as well as its complex and compelling characters. It deals with themes of abuse, corruption, and redemption, and has been praised for its skillful blending of social commentary with a fast-paced, thrilling narrative. The book was adapted into a successful film and has since become a cultural phenomenon, with readers around the world eagerly devouring its sequels and spin-offs."
+      },
+      {
+        "name": "Gone Girl",
+        "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71Q0+4VG1YL.jpg",
+        "category": "thriller",
+        "description": "'Gone Girl' is a psychological thriller novel by Gillian Flynn. The story follows Nick Dunne, a man who becomes the prime suspect in the disappearance of his wife Amy on their fifth wedding anniversary. As the investigation unfolds, the media circus surrounding the case puts pressure on Nick to prove his innocence and find his wife. The novel weaves together multiple narratives from both Nick and Amy's perspectives, revealing the complex and often dark dynamics of their marriage. 'Gone Girl' is a gripping and suspenseful novel that explores themes of love, betrayal, and the complexities of human relationships. It was adapted into a successful film directed by David Fincher in 2014"
+      },
+      {
+        "name": "The Da Vinci Code",
+        "image": "https://m.media-amazon.com/images/I/91Q5dCjc2KL.jpg",
+        "category": "thriller",
+        "description": "'The Da Vinci Code' is a thriller novel by Dan Brown. The story follows symbologist Robert Langdon and cryptologist Sophie Neveu, who are on a quest to solve a series of codes and puzzles that lead them to the Holy Grail. As they follow the clues, they find themselves in a dangerous race against time, pursued by a shadowy organization that will stop at nothing to keep the secrets of the Holy Grail hidden. Along the way, Langdon and Neveu must decipher clues hidden in works of art, landmarks, and ancient symbols, all while uncovering a web of conspiracies and hidden agendas. 'The Da Vinci Code' is a fast-paced and thrilling adventure that delves into the world of religious history and symbolism, and has become one of the bestselling novels of all time. It was adapted into a movie in 2006, starring Tom Hanks as Robert Langdon."
+      },
+      {
+        "name": "The Silence of the Lambs",
+        "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/814fRILnbnL.jpg",
+        "category": "thriller",
+        "description": "'The Silence of the Lambs' is a psychological thriller novel by Thomas Harris. The story follows FBI trainee Clarice Starling, who is tasked with interviewing the infamous cannibalistic serial killer Dr. Hannibal Lecter in the hopes of gaining insight into the mind of another killer, nicknamed Buffalo Bill. As Clarice delves deeper into the twisted world of these killers, she finds herself in a dangerous game of cat and mouse, racing against time to catch Buffalo Bill before he strikes again. The novel is a suspenseful and gripping exploration of the dark depths of the human psyche, as well as a character study of the enigmatic and fascinating Dr. Lecter. 'The Silence of the Lambs' was adapted into a successful film in 1991, starring Jodie Foster as Clarice Starling and Anthony Hopkins as Hannibal Lecter, and remains a classic of the thriller genre."
+      },
+      {
+        "name": "The Bourne Identity",
+        "image": "https://m.media-amazon.com/images/I/81XmTVk6LTL.jpg",
+        "category": "thriller",
+        "description": "'The Bourne Identity' is a spy thriller novel by Robert Ludlum. The story follows Jason Bourne, a man found floating in the Mediterranean Sea with no memory of his past, who quickly discovers that he is a highly-trained assassin with a multitude of deadly skills. As he struggles to piece together his past, he finds himself on the run from the people who want him dead, including his former handlers at the CIA. With the help of Marie St. Jacques, a woman he meets along the way, Bourne must evade his pursuers and uncover the truth about his past. 'The Bourne Identity' is a fast-paced and action-packed thriller that has become a classic of the genre, spawning numerous sequels, adaptations, and imitators. The novel was adapted into a successful film in 2002, starring Matt Damon as Jason Bourne."
+      },
+      {
+        "name": "The Firm",
+        "image": "https://m.media-amazon.com/images/I/A1rI-oiuUnL.jpg",
+        "category": "thriller",
+        "description": "'The Firm' is a legal thriller novel by John Grisham. The story follows Mitch McDeere, a promising young law graduate who is recruited by a prestigious law firm in Memphis. At first, Mitch is thrilled to be offered a high-paying job and the opportunity to work with some of the best legal minds in the business. However, as he begins to work on a case involving organized crime, he discovers that his firm is not what it seems, and that he may have gotten in over his head. With the help of his wife Abby, Mitch races to uncover the truth and protect himself and his family from danger. 'The Firm' is a gripping and suspenseful legal thriller that explores themes of greed, corruption, and the limits of the legal system. It was adapted into a successful film in 1993, starring Tom Cruise as Mitch McDeere."
+      }
+    ]
+  },
+  "adventure": {
+    "cardInfo": {
+      "title": "Adventure Collection",
+      "description": "Our Adventure Book Collection is full of thrilling stories that will transport you to far-off lands, take you on daring quests, and introduce you to unforgettable characters. From treasure hunts on desert islands, to epic journeys across exotic landscapes, to battles against pirates and monsters, our collection of adventure books has it all.",
+      "image": "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    },
+    "data": [
+      {
+        "name": "Around the World in Eighty Days",
+        "image": "https://d28hgpri8am2if.cloudfront.net/book_images/cvr9781416939368_9781416939368_hr.jpg",
+        "category": "adventure",
+        "description": "'Around the World in Eighty Days' is an adventure novel by Jules Verne. The story follows Phileas Fogg, an Englishman who makes a wager with his fellow members at the Reform Club that he can travel around the world in eighty days. Along with his trusty French valet, Passepartout, Fogg sets out on a journey that takes him across land and sea, through a variety of exotic and dangerous locales. The duo faces numerous obstacles, including delays, setbacks, and unexpected adventures, but Fogg remains steadfast in his determination to win the wager. The novel is a thrilling and imaginative exploration of the world and its many wonders, and a celebration of human ingenuity and perseverance. 'Around the World in Eighty Days' has inspired numerous adaptations, including films, television shows, and even a musical."
+      },
+      {
+        "name": "Treasure Island",
+        "image": "https://c8.alamy.com/comp/KRETKW/treasure-island-KRETKW.jpg",
+        "category": "adventure",
+        "description": "'Treasure Island' is an adventure novel by Robert Louis Stevenson. The story follows young Jim Hawkins, who is drawn into a dangerous quest for treasure after he discovers a map that leads to the location of the legendary pirate Captain Flint's buried treasure. Along with a group of seasoned sailors and a mysterious man named Long John Silver, Jim sets sail to the island where the treasure is hidden. But as they draw closer to their destination, Jim realizes that the men he is traveling with may not be what they seem, and that danger lurks around every corner. 'Treasure Island' is a classic tale of pirates, treasure, and adventure that has captured the imaginations of generations of readers. It has been adapted into numerous films, television shows, and stage productions, and remains a beloved classic of the adventure genre."
+      },
+      {
+        "name": "The Three Musketeers",
+        "image": "https://www.bl.uk/onlinegallery/features/blackeuro/images/musketeerslge.jpg",
+        "description": "'The Three Musketeers' is an adventure novel by Alexandre Dumas. The story is set in 17th century France and follows the adventures of three musketeers - Athos, Porthos, and Aramis - and their young, brave, and ambitious new friend, D'Artagnan. Together, they fight to protect the honor of the Queen of France and foil the evil plots of Cardinal Richelieu and his agents. The novel is full of daring sword fights, romance, intrigue, and political machinations, and features a cast of memorable characters, including the charming rogue, the Count of Monte Cristo. 'The Three Musketeers' is a swashbuckling tale of loyalty, friendship, and adventure that has inspired numerous adaptations in film, television, and other media. It remains a classic of the adventure genre and a beloved work of literature.",
+        "category": "adventure"
+      },
+      {
+        "name": "The Hobbit",
+        "image": "https://bookstr.com/wp-content/uploads/2019/12/Image-via-Amazon-1.jpg",
+        "description": "'The Hobbit' is a fantasy adventure novel by J.R.R. Tolkien, and is set in the same world as his more famous work, 'The Lord of the Rings.' The story follows Bilbo Baggins, a hobbit who is content to live a quiet life in his comfortable hobbit hole. However, when he is recruited by the wizard Gandalf to join a group of dwarves on a quest to reclaim their stolen treasure from the dragon Smaug, Bilbo is thrust into an epic adventure. Along the way, he encounters a variety of strange and magical creatures, including trolls, elves, goblins, and giant spiders. With the help of his new friends, Bilbo must navigate a perilous journey through the wilderness, facing danger at every turn, before ultimately confronting the dragon Smaug. 'The Hobbit' is a classic tale of adventure and heroism, full of unforgettable characters and breathtaking landscapes. It has been adapted into several films, as well as a beloved animated movie in 1977."
+      }
+    ]
+  }
+}

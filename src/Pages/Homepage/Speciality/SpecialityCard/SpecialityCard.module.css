@@ -1,0 +1,16 @@
+.specialityCard__container:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+  transform: scale3d(1.03, 1.03, 1.03);
+  transition: 0.3s transform;
+}
+.specialityCard__container .specialityCard__iconContainer {
+  background-color: #e5ba73;
+  transition: 0.3s;
+  color: white;
+}
+.specialityCard__container:hover .specialityCard__iconContainer {
+  background-color: #fff;
+  transition: 0.3s;
+  color: #e5ba73;
+}

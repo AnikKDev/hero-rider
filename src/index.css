@@ -1,0 +1,19 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Signika+Negative:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer {
+  * {
+    font-family: "Nunito", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Signika Negative", sans-serif;
+  }
+}
