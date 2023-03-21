@@ -1,7 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
+import { axiosInstace } from "../../utils/axiosInstance";
+import useGetValidation from "../Authentication/getValidation";
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+  const [userData, setUserData] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      if (token) {
+        const { data } = await axiosInstace("/me", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setIsLoggedIn(true);
+        setUserData(data);
+      }
+    };
+    fetchProfileData();
+  }, [token]);
+  console.log(userData);
   const navContents = (
     <>
       <li>
@@ -84,11 +104,30 @@ const Navbar = () => {
           className="mx-3 cursor-pointer hover:text-secondary transition-all"
           size={30}
         />
-        <button className="btn btn-primary btn-sm">
-          <NavLink className="mx-1" to="/join-as">
-            Join
-          </NavLink>
-        </button>
+        {isLoggedIn ? (
+          <>
+            <button className="btn btn-primary btn-sm">
+              <NavLink className="mx-1" to="/profile">
+                Profile
+              </NavLink>
+            </button>
+            <button
+              onClick={() => {
+                setIsLoggedIn(false);
+                localStorage.removeItem("token");
+              }}
+              className="btn btn-primary btn-sm"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <button className="btn btn-primary btn-sm">
+            <NavLink className="mx-1" to="/join-as">
+              Join
+            </NavLink>
+          </button>
+        )}
       </div>
     </div>
   );

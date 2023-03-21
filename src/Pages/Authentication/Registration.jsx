@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { JOIN_STATE_CONTEXT } from "../../App";
 import axios from "axios";
+import { axiosInstace } from "../../utils/axiosInstance";
+import { toast } from "react-hot-toast";
 // import useToken from '../../hooks/useToken';
 const Registration = () => {
   // accessing join state
@@ -22,7 +24,7 @@ const Registration = () => {
   } = useForm();
   // const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   // const [token] = useToken(user);
-
+  const navigate = useNavigate();
   // image uploading function
   async function uploadImage(form, image) {
     form.append("image", image);
@@ -33,23 +35,23 @@ const Registration = () => {
     return data.data.url;
   }
   const onSubmit = async (formData) => {
-    // console.log(data);
-    /* if (joinState === "rider") {
-      const { licensePicture, NID, profilePicture } = formData || {};
-      const nidImage = NID[0];
-      const licenseImage = licensePicture[0];
-      const profileImage = profilePicture[0];
-      const imgbbForm = new FormData();
-      imgbbForm.append("image", nidImage);
-      const url = `https://api.imgbb.com/1/upload?expiration=600&key=${
-        import.meta.env.VITE_IMGBB_API
-      }`;
-      // inside data, we have another object named data. to retrieve information, we have to use data.data
-      const { data } = await axios.post(url, imgbbForm);
-    } */
-
     if (joinState === "rider") {
-      const { licensePicture, NID, profilePicture } = formData || {};
+      const {
+        licensePicture,
+        NID,
+        profilePicture,
+        name,
+        email,
+        phone,
+        gender,
+        address,
+        vehicleType,
+        vehicleName,
+        vehicleModel,
+        namePalete,
+        password,
+        confirmPassword,
+      } = formData || {};
       const nidImage = NID[0];
       const licenseImage = licensePicture[0];
       const profileImage = profilePicture[0];
@@ -65,15 +67,42 @@ const Registration = () => {
 
       // Wait for all uploads to complete and store the URLs in an array or an object
       const [nidUrl, licenseUrl, profileUrl] = await uploads;
-      const imageUrls = { nidUrl, licenseUrl, profileUrl };
+      // const imageUrls = { nidUrl, licenseUrl, profileUrl };
 
       // Do something with the imageUrls object
-      console.log(imageUrls);
+      // console.log(imageUrls);
+      const riderInformations = {
+        fullName: name,
+        email,
+        age: "30",
+        address,
+        phone,
+        gender,
+        role: "rider",
+        drivingLicencePicture: licenseUrl,
+        area: address,
+        nidPicture: nidUrl,
+        profilePicture: profileUrl,
+        carInformation: {
+          name: vehicleName,
+          model: vehicleModel,
+          plateNumber: namePalete,
+        },
+        vehicleType,
+        password,
+        confirmPassword,
+      };
+      // console.log(riderInformations);
+      const response = await axiosInstace.post("/register", riderInformations);
+      /* if (response.status === 201) {
+      } */
+      if (response?.data?.data?.token) {
+        localStorage.setItem("token", response.data?.data?.token);
+        navigate("/profile");
+      } else {
+        toast.error(response.statusText);
+      }
     }
-
-    // ====================
-    /* await createUserWithEmailAndPassword(data.email, data.password);
-        await updateProfile({ displayName: data.name }); */
   };
   /* if (token) {
         navigate('/')
