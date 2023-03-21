@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { useEffect } from "react";
 import { JOIN_STATE_CONTEXT } from "../../App";
+import axios from "axios";
 // import useToken from '../../hooks/useToken';
 const Registration = () => {
   // accessing join state
@@ -21,8 +22,54 @@ const Registration = () => {
   } = useForm();
   // const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   // const [token] = useToken(user);
-  const onSubmit = async (data) => {
-    console.log(data);
+
+  // image uploading function
+  async function uploadImage(form, image) {
+    form.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${
+      import.meta.env.VITE_IMGBB_API
+    }`;
+    const { data } = await axios.post(url, form);
+    return data.data.url;
+  }
+  const onSubmit = async (formData) => {
+    // console.log(data);
+    /* if (joinState === "rider") {
+      const { licensePicture, NID, profilePicture } = formData || {};
+      const nidImage = NID[0];
+      const licenseImage = licensePicture[0];
+      const profileImage = profilePicture[0];
+      const imgbbForm = new FormData();
+      imgbbForm.append("image", nidImage);
+      const url = `https://api.imgbb.com/1/upload?expiration=600&key=${
+        import.meta.env.VITE_IMGBB_API
+      }`;
+      // inside data, we have another object named data. to retrieve information, we have to use data.data
+      const { data } = await axios.post(url, imgbbForm);
+    } */
+
+    if (joinState === "rider") {
+      const { licensePicture, NID, profilePicture } = formData || {};
+      const nidImage = NID[0];
+      const licenseImage = licensePicture[0];
+      const profileImage = profilePicture[0];
+
+      const imgbbForm = new FormData();
+
+      // Upload all images to ImgBB using Promise.all
+      const uploads = Promise.all([
+        uploadImage(imgbbForm, nidImage),
+        uploadImage(imgbbForm, licenseImage),
+        uploadImage(imgbbForm, profileImage),
+      ]);
+
+      // Wait for all uploads to complete and store the URLs in an array or an object
+      const [nidUrl, licenseUrl, profileUrl] = await uploads;
+      const imageUrls = { nidUrl, licenseUrl, profileUrl };
+
+      // Do something with the imageUrls object
+      console.log(imageUrls);
+    }
 
     // ====================
     /* await createUserWithEmailAndPassword(data.email, data.password);

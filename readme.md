@@ -1,6 +1,6 @@
 ### [Live Site](https://)
 
-### MyBookShop (demo)
+### HeroRider (demo)
 
 ## Stacks used
 
