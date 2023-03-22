@@ -3,9 +3,9 @@ import { axiosInstace } from "../utils/axiosInstance";
 
 const useIsAdmin = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       axiosInstace("/me", {
         headers: { authorization: `Bearer ${token}` },
@@ -17,8 +17,8 @@ const useIsAdmin = () => {
         }
       });
     }
-  }, []);
-
+  }, [token, setIsAdmin]);
+  console.log(isAdmin);
   return isAdmin;
 };
 

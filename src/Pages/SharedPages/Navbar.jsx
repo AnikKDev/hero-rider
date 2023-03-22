@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { JOIN_STATE_CONTEXT } from "../../App";
 import useIsAdmin from "../../hooks/useAdmin";
-import { axiosInstace } from "../../utils/axiosInstance";
-import useGetValidation from "../Authentication/getValidation";
 const Navbar = () => {
-  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
   // admin hook
   const isAdmin = useIsAdmin();
-
+  console.log(isAdmin);
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
@@ -105,7 +103,7 @@ const Navbar = () => {
           className="mx-3 cursor-pointer hover:text-secondary transition-all"
           size={30}
         />
-        {isAdmin && pathname !== "/signin" && (
+        {isAdmin && token && (
           <button className="btn mx-2 btn-primary btn-sm">
             <NavLink className="mx-1" to="/dashboard">
               Dashboard
@@ -123,6 +121,7 @@ const Navbar = () => {
               onClick={() => {
                 setIsLoggedIn(false);
                 localStorage.removeItem("token");
+                navigate("/signin");
               }}
               className="btn mx-2 btn-primary btn-sm"
             >

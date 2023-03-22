@@ -32,9 +32,13 @@ const Signin = () => {
         setIsLoading(false);
         localStorage.setItem("token", response?.data?.data?.token);
         setIsLoggedIn(true);
-        // location.reload();
         setRefreshStatus(true);
-        navigate("/profile");
+        console.log(response);
+        if (response?.data?.data?.others?.role === "admin") {
+          navigate("/dashboard");
+        } else {
+          navigate("/profile");
+        }
       }
     } catch (err) {
       // console.log(err);
