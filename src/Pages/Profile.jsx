@@ -37,61 +37,7 @@ const Profile = () => {
     carInformation,
     vehicleType,
   } = userData || {};
-  /* address
-: 
-"123 Main Street"
-age
-: 
-23
-area
-: 
-"New York"
-carInformation
-: 
-{name: 'Toyota', model: 'Camry', plateNumber: 'ABC123'}
-createdAt
-: 
-"2023-03-21T14:37:36.510Z"
-drivingLicencePicture
-: 
-"https://example.com/images/license.jpg"
-email
-: 
-"johndosase@example.com"
-fullName
-: 
-"anik kanti dev"
-isAdmin
-: 
-false
-nidPicture
-: 
-"https://example.com/images/nid.jpg"
-password
-: 
-"$2b$10$fy0wBBs8BpAFqodazekdcOPbDEh8rW6ujyisHxKU4fQDVfbbq5Jwu"
-phone
-: 
-"555-555-1212"
-profilePicture
-: 
-"https://example.com/images/profile.jpg"
-role
-: 
-"rider"
-updatedAt
-: 
-"2023-03-21T14:37:36.510Z"
-vehicleType
-: 
-"car"
-__v
-: 
-0
-_id
-: 
-"6419c130a31729a2dd5bc7f1"
-   */
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

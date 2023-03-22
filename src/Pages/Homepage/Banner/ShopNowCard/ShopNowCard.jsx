@@ -14,15 +14,16 @@ const ShopNowCard = () => {
           <h1 className="mb-5 text-5xl font-bold">
             <Typewriter
               options={{
-                strings: ["Discover Your Next Favorite Book at MyBookShop..."],
+                strings: ["Discover Your Next Ride at Hero-Rider..."],
                 autoStart: true,
                 loop: true,
               }}
             />
           </h1>
           <p className="mb-5">
-            Explore our vast collection of new and classic titles, curated with
-            the avid reader in mind.
+            <span className="font-bold underline text-primary">Hero Rider</span>
+            : Your One-Stop Solution for Hassle-Free Ridesharing and Driving
+            Lessons
           </p>
           <button className="btn btn-primary">Shop Now</button>
         </div>

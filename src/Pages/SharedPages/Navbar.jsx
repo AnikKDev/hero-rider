@@ -16,10 +16,15 @@ const Navbar = () => {
   const navContents = (
     <>
       <li>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Hero-Rider
+        </Link>
+      </li>
+      {/* <li>
         <NavLink className="mx-1" to="/">
           Home
         </NavLink>
-      </li>
+      </li> */}
     </>
   );
   return (

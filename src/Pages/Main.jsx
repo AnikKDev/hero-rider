@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Loadingpage from "../utils/Loadingpage";
 import FooterPage from "./SharedPages/FooterPage";
 import Navbar from "./SharedPages/Navbar";
-import TopNav from "./SharedPages/TopNav";
+// import TopNav from "./SharedPages/TopNav";
 const Main = () => {
   return (
     <div className="">

@@ -1,6 +1,6 @@
 .percentageCard__container {
   overflow: hidden;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .percentageCard__container img {
   transition: transform 0.4s;
