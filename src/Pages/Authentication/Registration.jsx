@@ -96,16 +96,6 @@ const Registration = () => {
         password,
         confirmPassword,
       };
-      // console.log(riderInformations);
-      /*  const response = await axiosInstace.post("/register", riderInformations);
-      
-      if (response?.data?.data?.token) {
-        localStorage.setItem("token", response.data?.data?.token);
-        setIsLoggedIn(true);
-        navigate("/profile");
-      } else {
-        toast.error(response.statusText);
-      } */
     } else if (joinState === "learner") {
       const {
         NID,
@@ -263,33 +253,18 @@ const Registration = () => {
             </span>
           </div>
           {/* vehicle info */}
-          <div className="flex">
-            <div className="form-control flex-row items-center justify-center">
-              <input
-                {...register("vehicleType")}
-                value="car"
-                type="radio"
-                name="radio-1"
-                className="radio"
-                defaultChecked
-              />
-              <label className="label">
-                <span className="label-text">Car</span>
-              </label>
-            </div>
-            <div className="form-control mx-6 flex-row items-center justify-center">
-              <input
-                {...register("vehicleType")}
-                value="bike"
-                type="radio"
-                name="radio-1"
-                className="radio"
-              />
-              <label className="label">
-                <span className="label-text">Bike</span>
-              </label>
-            </div>
-            {/* {errors.phone?.type === "vehicleType" && "Vehicle type is required"} */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Select Vehicle Type</span>
+            </label>
+            <select
+              {...register("vehicleType")}
+              className="select select-bordered w-full"
+            >
+              <option value="car">Car</option>
+              <option value="bike">Bike</option>
+            </select>
+            {errors.phone?.type === "vehicleType" && "Vehicle type is required"}
           </div>
 
           {isRider && (

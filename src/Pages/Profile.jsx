@@ -129,6 +129,7 @@ _id
                   {fullName}
                 </p>
               </div>
+
               <div>
                 <label
                   htmlFor="age"
@@ -141,6 +142,20 @@ _id
                   className="mt-1 block text-lg font-medium text-gray-900"
                 >
                   {age}
+                </p>
+              </div>
+              <div>
+                <label
+                  htmlFor="vehicleType"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Vehicle Type
+                </label>
+                <p
+                  id="vehicleType"
+                  className="mt-1 block text-lg font-medium text-gray-900 capitalize"
+                >
+                  {vehicleType}
                 </p>
               </div>
               <div>
@@ -240,6 +255,7 @@ _id
                     {carInformation?.name}
                   </p>
                 </div>
+
                 <div>
                   <label
                     htmlFor="model"
