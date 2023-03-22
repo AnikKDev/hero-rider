@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { JOIN_STATE_CONTEXT } from "../App";
 import { axiosInstace } from "../utils/axiosInstance";
 
 const Profile = () => {
+  const { refreshStatus } = useContext(JOIN_STATE_CONTEXT);
   const [userData, setUserData] = useState({});
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -37,7 +39,11 @@ const Profile = () => {
     carInformation,
     vehicleType,
   } = userData || {};
-
+  useEffect(() => {
+    if (refreshStatus) {
+      location.reload();
+    }
+  }, [refreshStatus]);
   return (
     <div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

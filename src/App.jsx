@@ -5,10 +5,18 @@ export const JOIN_STATE_CONTEXT = createContext(null);
 function App() {
   const [joinState, setJoinState] = useState("rider");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [refreshStatus, setRefreshStatus] = useState(false);
   // console.log(joinState);
   return (
     <JOIN_STATE_CONTEXT.Provider
-      value={{ joinState: joinState, setJoinState, isLoggedIn, setIsLoggedIn }}
+      value={{
+        joinState: joinState,
+        setJoinState,
+        isLoggedIn,
+        setIsLoggedIn,
+        refreshStatus,
+        setRefreshStatus,
+      }}
     >
       <div>
         <RouterProvider router={router} />

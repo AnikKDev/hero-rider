@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -9,7 +9,8 @@ import Loading from "../../utils/Loading";
 const Signin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
+  const { setIsLoggedIn, isLoggedIn, setRefreshStatus } =
+    useContext(JOIN_STATE_CONTEXT);
 
   const {
     register,
@@ -26,11 +27,13 @@ const Signin = () => {
         password: formData.password,
       };
       const response = await axiosInstace.post("/signin", loginInfo);
-      console.log(response);
+      // console.log(response);
       if (response?.data?.success) {
         setIsLoading(false);
         localStorage.setItem("token", response?.data?.data?.token);
         setIsLoggedIn(true);
+        // location.reload();
+        setRefreshStatus(true);
         navigate("/profile");
       }
     } catch (err) {

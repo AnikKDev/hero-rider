@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { JOIN_STATE_CONTEXT } from "../../App";
 import useIsAdmin from "../../hooks/useAdmin";
 import { axiosInstace } from "../../utils/axiosInstance";
 import useGetValidation from "../Authentication/getValidation";
 const Navbar = () => {
+  const { pathname } = useLocation();
   const token = localStorage.getItem("token");
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
@@ -104,7 +105,7 @@ const Navbar = () => {
           className="mx-3 cursor-pointer hover:text-secondary transition-all"
           size={30}
         />
-        {isAdmin && (
+        {isAdmin && pathname !== "/signin" && (
           <button className="btn mx-2 btn-primary btn-sm">
             <NavLink className="mx-1" to="/dashboard">
               Dashboard
