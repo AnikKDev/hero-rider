@@ -5,7 +5,7 @@ const ShopNowCard = () => {
     <div
       className="hero h-full"
       style={{
-        backgroundImage: `url("https://images.unsplash.com/photo-1528700850553-6a45e6f143db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=443&q=80")`,
+        backgroundImage: `url("https://images.unsplash.com/photo-1593950315186-76a92975b60c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
@@ -25,7 +25,7 @@ const ShopNowCard = () => {
             : Your One-Stop Solution for Hassle-Free Ridesharing and Driving
             Lessons
           </p>
-          <button className="btn btn-primary">Shop Now</button>
+          {/* <button className="btn btn-primary">Shop Now</button> */}
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ const Profile = () => {
       navigate("/signin");
     }
   }, [token]);
-  console.log(userData);
+  // console.log(userData);
   const {
     address,
     age,
