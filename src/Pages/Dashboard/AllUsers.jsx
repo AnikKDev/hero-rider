@@ -10,6 +10,8 @@ const AllUsers = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  // bulk selection
+  const [selectedIds, setSelectedIds] = useState([]);
   let queryString = "";
   if (fullName) {
     queryString += `fName=${fullName}&`;
@@ -52,6 +54,7 @@ const AllUsers = () => {
       console.log(err);
     }
   };
+  console.log(selectedIds);
   //   pagination
   const totalPages = Math.ceil(totalUsers / 10);
   //   console.log(totalPages);
@@ -99,12 +102,18 @@ const AllUsers = () => {
       </form>
 
       {/* table */}
-
+      {selectedIds.length > 0 && (
+        <div>
+          <button className="btn btn-error btn-sm text-white mx-6 my-3">
+            Block Selected Users
+          </button>
+        </div>
+      )}
       <div className="overflow-x-auto mx-7">
         <table className="table w-full">
           <thead>
             <tr>
-              {/* <th>Select</th> */}
+              <th>Select</th>
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
@@ -115,7 +124,11 @@ const AllUsers = () => {
           </thead>
           <tbody>
             {allUsers.map((userData) => (
-              <UserRow userData={userData} />
+              <UserRow
+                userData={userData}
+                setSelectedIds={setSelectedIds}
+                selectedIds={selectedIds}
+              />
             ))}
           </tbody>
         </table>
