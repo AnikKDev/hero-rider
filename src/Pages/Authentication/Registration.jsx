@@ -7,6 +7,7 @@ import { JOIN_STATE_CONTEXT } from "../../App";
 import axios from "axios";
 import { axiosInstace } from "../../utils/axiosInstance";
 import { toast } from "react-hot-toast";
+import Loading from "../../utils/Loading";
 // import useToken from '../../hooks/useToken';
 const Registration = () => {
   // accessing join state
@@ -14,6 +15,7 @@ const Registration = () => {
   const { joinState, setIsLoggedIn, isLoggedIn } =
     useContext(JOIN_STATE_CONTEXT);
   const [isRider, setIsRider] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     if (joinState !== "rider") setIsRider(false);
   }, [joinState]);
@@ -31,6 +33,7 @@ const Registration = () => {
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${
       import.meta.env.VITE_IMGBB_API
     }`;
+    setIsLoading(true);
     const { data } = await axios.post(url, form);
     return data.data.url;
   }
@@ -40,6 +43,7 @@ const Registration = () => {
       const {
         licensePicture,
         NID,
+        area,
         profilePicture,
         name,
         email,
@@ -147,15 +151,21 @@ const Registration = () => {
       };
     }
     // posting user
-    const response = await axiosInstace.post("/register", userInformation);
-    if (response?.data?.data?.token) {
+    try {
+      setIsLoading(true);
+      const response = await axiosInstace.post("/register", userInformation);
+
       localStorage.setItem("token", response.data?.data?.token);
       setIsLoggedIn(true);
+      setIsLoading(false);
       navigate("/profile");
-    } else {
-      toast.error(response.statusText);
+    } catch (err) {
+      setIsLoading(false);
+      toast.error(err?.response?.data?.message);
     }
   };
+
+  if (isLoading) return <Loading />;
   return (
     <div className=" flex justify-center items-center">
       <div className="card w-full md:w-2/4 items-center shadow-2xl bg-base-100">
@@ -256,7 +266,7 @@ const Registration = () => {
           <div className="flex">
             <div className="form-control flex-row items-center justify-center">
               <input
-                {...register("vehicleType", { required: true })}
+                {...register("vehicleType")}
                 value="car"
                 type="radio"
                 name="radio-1"
@@ -269,6 +279,7 @@ const Registration = () => {
             </div>
             <div className="form-control mx-6 flex-row items-center justify-center">
               <input
+                {...register("vehicleType")}
                 value="bike"
                 type="radio"
                 name="radio-1"
@@ -278,7 +289,7 @@ const Registration = () => {
                 <span className="label-text">Bike</span>
               </label>
             </div>
-            {errors.phone?.type === "vehicleType" && "Vehicle type is required"}
+            {/* {errors.phone?.type === "vehicleType" && "Vehicle type is required"} */}
           </div>
 
           {isRider && (
@@ -407,7 +418,7 @@ const Registration = () => {
             </span>
           </div>
           <div className="form-control mt-6">
-            <button type="submit" className="btn">
+            <button disabled={isLoading} type="submit" className="btn">
               Register
             </button>
           </div>

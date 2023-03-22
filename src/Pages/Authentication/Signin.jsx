@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { JOIN_STATE_CONTEXT } from "../../App";
 import { axiosInstace } from "../../utils/axiosInstance";
+import Loading from "../../utils/Loading";
 // import useToken from '../../hooks/useToken';
 const Signin = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
 
@@ -16,22 +19,28 @@ const Signin = () => {
     reset,
   } = useForm();
   const onSubmit = async (formData) => {
-    const loginInfo = {
-      email: formData.email,
-      password: formData.password,
-    };
-    const { data } = await axiosInstace.post("/signin", loginInfo);
-    console.log(data);
-    if (data.success) {
-      localStorage.setItem("token", data?.data?.token);
-      setIsLoggedIn(true);
-      navigate("/profile");
+    try {
+      setIsLoading(true);
+      const loginInfo = {
+        email: formData.email,
+        password: formData.password,
+      };
+      const response = await axiosInstace.post("/signin", loginInfo);
+      console.log(response);
+      if (response?.data?.success) {
+        setIsLoading(false);
+        localStorage.setItem("token", response?.data?.data?.token);
+        setIsLoggedIn(true);
+        navigate("/profile");
+      }
+    } catch (err) {
+      // console.log(err);
+      setIsLoading(false);
+      toast.error(err?.response?.data?.message);
     }
   };
-  /*    if (token) {
-        navigate('/')
-    } */
 
+  if (isLoading) return <Loading />;
   return (
     <div className=" flex justify-center lg:min-h-screen items-center">
       <div className="card w-full md:w-96 items-center shadow-2xl bg-base-100">
@@ -68,12 +77,11 @@ const Signin = () => {
             </span>
           </div>
           <div className="form-control mt-6">
-            <button type="submit" className="btn ">
+            <button disabled={isLoading} type="submit" className="btn ">
               Login
             </button>
           </div>
         </form>
-        {/* <h5 className=''>Forgot Password? <span className='btn btn-link underline text-white font-bold' onClick={handleResetPassword}>Send Reset Mail</span></h5> */}
 
         <label className="mt-2">
           Don't have an account?{" "}
