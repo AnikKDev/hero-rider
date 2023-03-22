@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserRow = ({ userData, setSelectedIds, selectedIds }) => {
-  const { fullName, _id, email, role, phone, age } = userData;
+  const { fullName, _id, email, role, phone, age, isBlocked } = userData;
   const handleCheckboxClick = () => {
     if (selectedIds.includes(_id)) {
       setSelectedIds(selectedIds.filter((id) => id !== _id));
@@ -10,13 +10,15 @@ const UserRow = ({ userData, setSelectedIds, selectedIds }) => {
     }
   };
   return (
-    <tr>
+    <tr className={`${isBlocked && "text-red-600"}`}>
       <th>
-        <input
-          onChange={() => handleCheckboxClick(_id)}
-          type="checkbox"
-          className="checkbox"
-        />
+        {!isBlocked && (
+          <input
+            onChange={() => handleCheckboxClick(_id)}
+            type="checkbox"
+            className="checkbox"
+          />
+        )}
       </th>
       <th>{_id}</th>
       <td>{fullName}</td>

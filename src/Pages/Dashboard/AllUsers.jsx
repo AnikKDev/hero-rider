@@ -57,8 +57,21 @@ const AllUsers = () => {
   console.log(selectedIds);
   //   pagination
   const totalPages = Math.ceil(totalUsers / 10);
-  //   console.log(totalPages);
-  //   console.log(allUsers);
+  // block selected users
+  const handleBlockSelectedUsers = async () => {
+    try {
+      const response = await axiosInstace.patch("/bulk-update", {
+        ids: selectedIds,
+      });
+      if (response.data.data.modifiedCount > 0) {
+        location.reload();
+      } else {
+        toast.error("something went wrong");
+      }
+    } catch (err) {
+      toast.error(err);
+    }
+  };
   return (
     <div>
       <div className="bg-gray-800 text-white px-8 py-2">
@@ -104,7 +117,10 @@ const AllUsers = () => {
       {/* table */}
       {selectedIds.length > 0 && (
         <div>
-          <button className="btn btn-error btn-sm text-white mx-6 my-3">
+          <button
+            onClick={handleBlockSelectedUsers}
+            className="btn btn-error btn-sm text-white mx-6 my-3"
+          >
             Block Selected Users
           </button>
         </div>
