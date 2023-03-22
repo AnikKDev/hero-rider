@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { Link, NavLink } from "react-router-dom";
+import { JOIN_STATE_CONTEXT } from "../../App";
 import { axiosInstace } from "../../utils/axiosInstance";
 import useGetValidation from "../Authentication/getValidation";
 const Navbar = () => {
   const token = localStorage.getItem("token");
-  const [userData, setUserData] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
   useEffect(() => {
-    const fetchProfileData = async () => {
-      if (token) {
-        const { data } = await axiosInstace("/me", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-        setIsLoggedIn(true);
-        setUserData(data);
-      }
-    };
-    fetchProfileData();
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, [token]);
-  console.log(userData);
   const navContents = (
     <>
       <li>
@@ -116,7 +107,7 @@ const Navbar = () => {
                 setIsLoggedIn(false);
                 localStorage.removeItem("token");
               }}
-              className="btn btn-primary btn-sm"
+              className="btn mx-2 btn-primary btn-sm"
             >
               Logout
             </button>

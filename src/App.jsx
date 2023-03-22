@@ -4,9 +4,12 @@ import router from "./router/router";
 export const JOIN_STATE_CONTEXT = createContext(null);
 function App() {
   const [joinState, setJoinState] = useState("rider");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // console.log(joinState);
   return (
-    <JOIN_STATE_CONTEXT.Provider value={{ joinState: joinState, setJoinState }}>
+    <JOIN_STATE_CONTEXT.Provider
+      value={{ joinState: joinState, setJoinState, isLoggedIn, setIsLoggedIn }}
+    >
       <div>
         <RouterProvider router={router} />
       </div>

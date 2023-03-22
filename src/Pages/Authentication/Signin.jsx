@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { JOIN_STATE_CONTEXT } from "../../App";
+import { axiosInstace } from "../../utils/axiosInstance";
 // import useToken from '../../hooks/useToken';
 const Signin = () => {
   const navigate = useNavigate();
+  const { setIsLoggedIn, isLoggedIn } = useContext(JOIN_STATE_CONTEXT);
 
   const {
     register,
@@ -12,9 +15,18 @@ const Signin = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const onSubmit = (data) => {
-    // console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+  const onSubmit = async (formData) => {
+    const loginInfo = {
+      email: formData.email,
+      password: formData.password,
+    };
+    const { data } = await axiosInstace.post("/signin", loginInfo);
+    console.log(data);
+    if (data.success) {
+      localStorage.setItem("token", data?.data?.token);
+      setIsLoggedIn(true);
+      navigate("/profile");
+    }
   };
   /*    if (token) {
         navigate('/')

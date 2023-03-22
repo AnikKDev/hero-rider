@@ -10,7 +10,9 @@ import { toast } from "react-hot-toast";
 // import useToken from '../../hooks/useToken';
 const Registration = () => {
   // accessing join state
-  const { joinState } = useContext(JOIN_STATE_CONTEXT);
+
+  const { joinState, setIsLoggedIn, isLoggedIn } =
+    useContext(JOIN_STATE_CONTEXT);
   const [isRider, setIsRider] = useState(true);
   useEffect(() => {
     if (joinState !== "rider") setIsRider(false);
@@ -22,8 +24,6 @@ const Registration = () => {
     formState: { errors },
     reset,
   } = useForm();
-  // const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  // const [token] = useToken(user);
   const navigate = useNavigate();
   // image uploading function
   async function uploadImage(form, image) {
@@ -35,6 +35,7 @@ const Registration = () => {
     return data.data.url;
   }
   const onSubmit = async (formData) => {
+    let userInformation = {};
     if (joinState === "rider") {
       const {
         licensePicture,
@@ -43,7 +44,7 @@ const Registration = () => {
         name,
         email,
         phone,
-        gender,
+        age,
         address,
         vehicleType,
         vehicleName,
@@ -71,16 +72,15 @@ const Registration = () => {
 
       // Do something with the imageUrls object
       // console.log(imageUrls);
-      const riderInformations = {
+      userInformation = {
         fullName: name,
         email,
-        age: "30",
         address,
         phone,
-        gender,
+        age,
         role: "rider",
         drivingLicencePicture: licenseUrl,
-        area: address,
+        area,
         nidPicture: nidUrl,
         profilePicture: profileUrl,
         carInformation: {
@@ -93,20 +93,69 @@ const Registration = () => {
         confirmPassword,
       };
       // console.log(riderInformations);
-      const response = await axiosInstace.post("/register", riderInformations);
-      /* if (response.status === 201) {
-      } */
+      /*  const response = await axiosInstace.post("/register", riderInformations);
+      
       if (response?.data?.data?.token) {
         localStorage.setItem("token", response.data?.data?.token);
+        setIsLoggedIn(true);
         navigate("/profile");
       } else {
         toast.error(response.statusText);
-      }
+      } */
+    } else if (joinState === "learner") {
+      const {
+        NID,
+        profilePicture,
+        name,
+        email,
+        phone,
+        age,
+        address,
+        vehicleType,
+        password,
+        confirmPassword,
+      } = formData || {};
+      const nidImage = NID[0];
+      const profileImage = profilePicture[0];
+
+      const imgbbForm = new FormData();
+
+      // Upload all images to ImgBB using Promise.all
+      const uploads = Promise.all([
+        uploadImage(imgbbForm, nidImage),
+        uploadImage(imgbbForm, profileImage),
+      ]);
+
+      // Wait for all uploads to complete and store the URLs in an array or an object
+      const [nidUrl, profileUrl] = await uploads;
+      // const imageUrls = { nidUrl, licenseUrl, profileUrl };
+
+      // Do something with the imageUrls object
+      // console.log(imageUrls);
+      userInformation = {
+        fullName: name,
+        email,
+        address,
+        phone,
+        age,
+        role: "learner",
+        nidPicture: nidUrl,
+        profilePicture: profileUrl,
+        vehicleType,
+        password,
+        confirmPassword,
+      };
+    }
+    // posting user
+    const response = await axiosInstace.post("/register", userInformation);
+    if (response?.data?.data?.token) {
+      localStorage.setItem("token", response.data?.data?.token);
+      setIsLoggedIn(true);
+      navigate("/profile");
+    } else {
+      toast.error(response.statusText);
     }
   };
-  /* if (token) {
-        navigate('/')
-    } */
   return (
     <div className=" flex justify-center items-center">
       <div className="card w-full md:w-2/4 items-center shadow-2xl bg-base-100">
@@ -176,22 +225,19 @@ const Registration = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Gender</span>
+              <span className="label-text">Age</span>
             </label>
-            <select
-              {...register("gender", { required: true })}
-              className="select select-bordered w-full"
-            >
-              <option disabled selected>
-                Gender
-              </option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
+            <input
+              {...register("age", { required: true })}
+              type="number"
+              placeholder="age"
+              className="input input-bordered"
+            />
             <span className="label-text text-error">
-              {errors.phone?.type === "required" && "phone is required"}
+              {errors.age?.type === "required" && "phone is required"}
             </span>
           </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Address</span>
@@ -237,6 +283,20 @@ const Registration = () => {
 
           {isRider && (
             <>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Area</span>
+                </label>
+                <textarea
+                  {...register("area", { required: true })}
+                  type="text"
+                  placeholder="area"
+                  className="textarea textarea-bordered"
+                />
+                <span className="label-text text-error">
+                  {errors.area?.type === "required" && "Area is required"}
+                </span>
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Driving License Picture</span>
