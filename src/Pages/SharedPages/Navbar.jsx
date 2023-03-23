@@ -18,11 +18,9 @@ const Navbar = () => {
   }, [token]);
   const navContents = (
     <>
-      <li>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Hero-Rider
-        </Link>
-      </li>
+      <Link to="/">
+        <li className="btn btn-ghost normal-case text-xl">Hero-Rider</li>
+      </Link>
       {/* <li>
         <NavLink className="mx-1" to="/">
           Home
@@ -59,15 +57,15 @@ const Navbar = () => {
           tabIndex={0}
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li>
-            <Link to="/">
+          <Link to="/">
+            <li>
               <BsFacebook
                 className="mx-3 cursor-pointer hover:text-secondary transition-all"
                 size={30}
               />{" "}
               Facebook
-            </Link>
-          </li>
+            </li>
+          </Link>
 
           <li>
             <a href="">
@@ -78,15 +76,15 @@ const Navbar = () => {
               Instagram
             </a>
           </li>
-          <li>
-            <Link to="/">
+          <Link to="/">
+            <li>
               <BsWhatsapp
                 className="mx-3 cursor-pointer hover:text-secondary transition-all"
                 size={30}
               />{" "}
               Linkedin
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="lg:flex flex-none h-full hidden">
@@ -104,19 +102,15 @@ const Navbar = () => {
           size={30}
         />
         {isAdmin && token && (
-          <button className="btn mx-2 btn-primary btn-sm">
-            <NavLink className="mx-1" to="/dashboard">
-              Dashboard
-            </NavLink>
-          </button>
+          <NavLink className="mx-1" to="/dashboard">
+            <button className="btn mx-2 btn-primary btn-sm">Dashboard</button>
+          </NavLink>
         )}
         {isLoggedIn ? (
           <>
-            <button className="btn btn-primary btn-sm">
-              <NavLink className="mx-1" to="/profile">
-                Profile
-              </NavLink>
-            </button>
+            <NavLink className="mx-1" to="/profile">
+              <button className="btn btn-primary btn-sm">Profile</button>
+            </NavLink>
             <button
               onClick={() => {
                 setIsLoggedIn(false);
